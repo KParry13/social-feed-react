@@ -1,39 +1,45 @@
-// pipepline {
+pipepline {
 
-//     agent any
+    agent any
 
     
 
-//     stages{
+    stages{
 
-//         stage('Install Dependencies') {
-//             steps {
-//                 sh 'npm install'
-//             }
-//         }
+        stage('Install Dependencies') {
+            steps {
 
-//         stage('Create Optimized React Build') {
-//             steps {
-//                 sh 'echo"Creating optimized react build..."'
-//             }
-//         }
+                script {
+                    def nodejsTool = tool name: 'node-20-tool', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+                    env.PATH = "${nodejsTool}/bin:${env.PATH}"
+                }
+                sh 'npm install'
+                sh 'npm run-script build'
+            }
+        }
 
-//         stage('Build Docker Image') {
-//             steps{
-//                 sh 'echo "Building Docker Image..."'
-//             }
-//         }
+        stage('Create Optimized React Build') {
+            steps {
+                sh 'echo"Creating optimized react build..."'
+            }
+        }
 
-//         stage('Push Docker Image') {
-//             steps{
-//                 sh 'echo"Pushing docker image..."'
-//             }
-//         }
+        stage('Build Docker Image') {
+            steps{
+                sh 'echo "Building Docker Image..."'
+            }
+        }
 
-//         stage('Deploy New Image to AWS EC2') {
-//             steps{
-//                 sh 'echo "Deploying new image..."'
-//             }
-//         }
-//     }
-// }
+        stage('Push Docker Image') {
+            steps{
+                sh 'echo"Pushing docker image..."'
+            }
+        }
+
+        stage('Deploy New Image to AWS EC2') {
+            steps{
+                sh 'echo "Deploying new image..."'
+            }
+        }
+    }
+}
