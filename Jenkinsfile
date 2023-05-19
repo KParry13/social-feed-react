@@ -40,16 +40,19 @@ pipeline {
             }
         }
 
-        // stage('Deploy New Image to AWS EC2') {
-        //     steps{
+        stage('Deploy New Image to AWS EC2') {
+            steps{
 
-
-        //         // SSH into our remote server
-        //         // Shut down the current running image
-        //         // Pull the new image that was just pushed
-        //         // Launch that new running on our remote server
-        //     }
-        // }
+                sshagent(['music-library-linux-kp-ssh-credentials']) {
+                    sh """
+                        SSH_COMMAND="ssh -o StrictHostKeyChecking=no ubuntu@18.118.8.197"
+                        \$SSH_COMMAND "docker stop hosted-react-app && docker rm hosted-react-app"
+                        \$SSH_COMMAND "docker pull kparry/social-feed-react:$BUILD_NUMBER"
+                        \$SSH_COMMAND "docker run -d -p 80:80 --name hosted-react-app kparry/social-feed-react:$BUILD_NUMBER"
+                    """
+                }
+            }
+        }
 
     }
 }
