@@ -40,16 +40,16 @@ pipeline {
             }
         }
 
-        stage('Deploy New Image to AWS EC2') {
-            steps{
-                
+        // stage('Deploy New Image to AWS EC2') {
+        //     steps{
 
-                // SSH into our remote server
-                // Shut down the current running image
-                // Pull the new image that was just pushed
-                // Launch that new running on our remote server
-            }
-        }
+
+        //         // SSH into our remote server
+        //         // Shut down the current running image
+        //         // Pull the new image that was just pushed
+        //         // Launch that new running on our remote server
+        //     }
+        // }
 
     }
 }
