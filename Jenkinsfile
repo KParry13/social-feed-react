@@ -18,28 +18,29 @@ pipepline {
             }
         }
 
-        stage('Create Optimized React Build') {
-            steps {
-                sh 'echo"Creating optimized react build..."'
-            }
-        }
+        // stage('Create Optimized React Build') {
+        //     steps {
+        //         sh 'echo"Creating optimized react build..."'
+        //     }
+        // }
 
-        stage('Build Docker Image') {
-            steps{
-                sh 'echo "Building Docker Image..."'
-            }
-        }
+        // stage('Build Docker Image') {
+        //     steps{
+        //         sh 'echo "Building Docker Image..."'
+        //     }
+        // }
 
-        stage('Push Docker Image') {
-            steps{
-                sh 'echo"Pushing docker image..."'
-            }
-        }
+        // stage('Push Docker Image') {
+        //     steps{
+        //         sh 'echo"Pushing docker image..."'
+        //     }
+        // }
 
-        stage('Deploy New Image to AWS EC2') {
-            steps{
-                sh 'echo "Deploying new image..."'
-            }
-        }
+        // stage('Deploy New Image to AWS EC2') {
+        //     steps{
+        //         sh 'echo "Deploying new image..."'
+        //     }
+        // }
+
     }
 }
