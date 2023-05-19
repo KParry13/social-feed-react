@@ -7,6 +7,7 @@ COPY . ./
 RUN npm run build
 
 FROM nginx:stable-alpine
+# # Needed for multi page react applications, along with custom-nginx.conf file.
 COPY custom-nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80
