@@ -36,15 +36,20 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'personal-docker-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh 'docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}'
                 }
-                sh "docker push kparry/react-jenkins-docker"
+                sh "docker push kparry/social-feed-react"
             }
         }
 
-        // stage('Deploy New Image to AWS EC2') {
-        //     steps{
-        //         sh 'echo "Deploying new image..."'
-        //     }
-        // }
+        stage('Deploy New Image to AWS EC2') {
+            steps{
+
+
+                // SSH into our remote server
+                // Shut down the current running image
+                // Pull the new image that was just pushed
+                // Launch that new running on our remote server
+            }
+        }
 
     }
 }
