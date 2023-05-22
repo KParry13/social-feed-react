@@ -46,7 +46,7 @@ pipeline {
                 sshagent(['music-library-linux-kp-ssh-credentials']) {
                     sh """
                         SSH_COMMAND="ssh -o StrictHostKeyChecking=no ubuntu@3.138.100.51"
-
+                        \$SSH_COMMAND "docker stop hosted-react-app && docker rm hosted-react-app"
                         \$SSH_COMMAND "docker pull kparry/social-feed-react:$BUILD_NUMBER"
                         \$SSH_COMMAND "docker run -d -p 80:80 --name hosted-react-app kparry/social-feed-react:$BUILD_NUMBER"
                     """
